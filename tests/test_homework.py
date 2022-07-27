@@ -57,25 +57,25 @@ def test_InfoMessage():
 
 @pytest.mark.parametrize('input_data, expected', [
     (['Swimming', 1, 75, 1, 80],
-        'Тип тренировки: Swimming; '
-        'Длительность: 1.000 ч.; '
-        'Дистанция: 75.000 км; '
-        'Ср. скорость: 1.000 км/ч; '
-        'Потрачено ккал: 80.000.'
+     'Тип тренировки: Swimming; '
+     'Длительность: 1.000 ч.; '
+     'Дистанция: 75.000 км; '
+     'Ср. скорость: 1.000 км/ч; '
+     'Потрачено ккал: 80.000.'
      ),
     (['Running', 4, 20, 4, 20],
-        'Тип тренировки: Running; '
-        'Длительность: 4.000 ч.; '
-        'Дистанция: 20.000 км; '
-        'Ср. скорость: 4.000 км/ч; '
-        'Потрачено ккал: 20.000.'
+     'Тип тренировки: Running; '
+     'Длительность: 4.000 ч.; '
+     'Дистанция: 20.000 км; '
+     'Ср. скорость: 4.000 км/ч; '
+     'Потрачено ккал: 20.000.'
      ),
     (['SportsWalking', 12, 6, 12, 6],
-        'Тип тренировки: SportsWalking; '
-        'Длительность: 12.000 ч.; '
-        'Дистанция: 6.000 км; '
-        'Ср. скорость: 12.000 км/ч; '
-        'Потрачено ккал: 6.000.'
+     'Тип тренировки: SportsWalking; '
+     'Длительность: 12.000 ч.; '
+     'Дистанция: 6.000 км; '
+     'Ср. скорость: 12.000 км/ч; '
+     'Потрачено ккал: 6.000.'
      ),
 ])
 def test_InfoMessage_get_message(input_data, expected):
@@ -86,7 +86,7 @@ def test_InfoMessage_get_message(input_data, expected):
     assert callable(info_message.get_message), (
         'Проверьте, что `get_message` в классе `InfoMessage` - это метод.'
     )
-    result = info_message.get_message
+    result = info_message.get_message()
     assert isinstance(result, str), (
         'Метод `get_message` в классе `InfoMessage`'
         'должен возвращать значение типа `str`'
@@ -193,6 +193,7 @@ def test_Training_show_training_info(monkeypatch):
 
     def mock_get_spent_calories():
         return 100
+
     monkeypatch.setattr(
         training,
         'get_spent_calories',

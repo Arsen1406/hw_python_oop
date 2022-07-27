@@ -9,17 +9,21 @@ class InfoMessage:
                  calories: float,
                  ) -> None:
         self.training_type: str = training_type
-        self.duration: float = "%.3f" % duration
-        self.speed: float = "%.3f" % speed
-        self.calories: float = "%.3f" % calories
-        self.distance: float = "%.3f" % distance
+        self.duration: str = "%.3f" % duration
+        self.speed: str = "%.3f" % speed
+        self.calories: str = "%.3f" % calories
+        self.distance: str = "%.3f" % distance
 
     def get_message(self) -> str:
-        message: str = (f'Тип тренировки: {self.training_type}; '
-                        f'Длительность: {self.duration} ч.; '
-                        f'Дистанция: {self.distance} км; '
-                        f'Ср. скорость: {self.speed} км/ч; '
-                        f'Потрачено ккал: {self.calories}.')
+        message = ('Тип тренировки: {}; '
+                   'Длительность: {} ч.; '
+                   'Дистанция: {} км; '
+                   'Ср. скорость: {} км/ч; '
+                   'Потрачено ккал: {}.').format(self.training_type,
+                                                 self.duration,
+                                                 self.distance,
+                                                 self.speed,
+                                                 self.calories)
         return message
 
 
@@ -78,8 +82,6 @@ class Running(Training):
         return res
 
 
-# (18 * средняя_скорость - 20) * вес_спортсмена / M_IN_KM * время_тренировки_в_минутах
-
 class SportsWalking(Training):
     """Тренировка: спортивная ходьба."""
     coeff_walk_calorie_1: float = 0.035
@@ -118,11 +120,13 @@ class Swimming(Training):
         super().__init__(action, duration, weight)
 
     def get_mean_speed(self) -> float:
-        return self.length_pool * self.count_pool / self.M_IN_KM / self.duration
+        return self.length_pool * self.count_pool / self.M_IN_KM / \
+               self.duration
 
     def get_spent_calories(self) -> float:
         return (self.get_mean_speed() +
-                self.coeff_swim_calorie_1) * self.coeff_swim_calorie_2 * self.weight
+                self.coeff_swim_calorie_1) \
+               * self.coeff_swim_calorie_2 * self.weight
 
 
 def read_package(workout_type: str, data: list) -> Training:
