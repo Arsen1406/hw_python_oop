@@ -129,6 +129,7 @@ class Swimming(Training):
         res = calories_1 * self.coeff_swim_calorie_2 * self.weight
         return res
 
+
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
     type_dickt = {'SWM': Swimming, 'WLK': SportsWalking, 'RUN': Running}
