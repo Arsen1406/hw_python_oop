@@ -120,14 +120,14 @@ class Swimming(Training):
         super().__init__(action, duration, weight)
 
     def get_mean_speed(self) -> float:
-        return self.length_pool * self.count_pool / self.M_IN_KM / \
-               self.duration
+        pool_speed = self.length_pool * self.count_pool
+        res = pool_speed / self.M_IN_KM / self.duration
+        return res
 
     def get_spent_calories(self) -> float:
-        return (self.get_mean_speed()
-                + self.coeff_swim_calorie_1) \
-                * self.coeff_swim_calorie_2 * self.weight
-
+        calories_1 = (self.get_mean_speed() + self.coeff_swim_calorie_1)
+        res = calories_1 * self.coeff_swim_calorie_2 * self.weight
+        return res
 
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
