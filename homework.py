@@ -22,6 +22,7 @@ class InfoMessage:
                         f'Потрачено ккал: {self.calories}.')
         return message
 
+
 class Training:
     LEN_STEP: float = 0.65
     M_IN_KM: int = 1000
@@ -59,7 +60,6 @@ class Training:
 
 
 class Running(Training):
-
     coeff_calorie_1: int = 18
     coeff_calorie_2: int = 20
 
@@ -76,10 +76,11 @@ class Running(Training):
         callories_2 = (callories_1 - self.coeff_calorie_2) * self.weight
         res = callories_2 / self.M_IN_KM * self.duration * 60
         return res
-#(18 * средняя_скорость - 20) * вес_спортсмена / M_IN_KM * время_тренировки_в_минутах
+
+
+# (18 * средняя_скорость - 20) * вес_спортсмена / M_IN_KM * время_тренировки_в_минутах
 
 class SportsWalking(Training):
-
     """Тренировка: спортивная ходьба."""
     coeff_walk_calorie_1: float = 0.035
     coeff_walk_calorie_2: int = 2
@@ -101,7 +102,6 @@ class SportsWalking(Training):
 
 
 class Swimming(Training):
-
     LEN_STEP: float = 1.38
     coeff_swim_calorie_1: float = 1.1
     coeff_swim_calorie_2: int = 2
