@@ -56,15 +56,10 @@ class Training:
         return info_message
 
 
-@dataclass
 class Running(Training):
     """Тренировка: бег."""
     ENERGY = 18
     COEF_CALORIES = 20
-
-    action: int
-    duration: float
-    weight: float
 
     def get_spent_calories(self) -> float:
         calories_1 = self.ENERGY * self.get_mean_speed()
@@ -79,10 +74,6 @@ class SportsWalking(Training):
     WALK_CALORIE_1 = 0.035
     WALK_CALORIE_2 = 2
     WALK_CALORIE_3 = 0.029
-
-    action: int
-    duration: float
-    weight: float
     height: float
 
     def get_spent_calories(self) -> float:
@@ -98,10 +89,6 @@ class Swimming(Training):
     LEN_STEP = 1.38
     SWIM_CALORIE_1 = 1.1
     SWIM_CALORIE_2 = 2
-
-    action: int
-    duration: float
-    weight: float
     length_pool: float
     count_pool: float
 
